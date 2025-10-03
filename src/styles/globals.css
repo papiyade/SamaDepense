@@ -376,7 +376,7 @@ body {
 }
 
 .dropdown-item {
-  @apply group flex items-center w-full px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-100 first:rounded-t-xl last:rounded-b-xl;
+  @apply flex items-center w-full px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 hover:text-slate-900 dark:hover:text-slate-100 first:rounded-t-xl last:rounded-b-xl;
 }
 
 /* Styles pour les états vides */
@@ -581,4 +581,3 @@ body {
     transition: none;
   }
 }
-

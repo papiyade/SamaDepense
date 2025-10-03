@@ -12,7 +12,7 @@ import {
 } from 'lucide-react'
 
 // Stores
-import { useUserStore, useOnboarding } from '@/stores/userStore'
+import { useUserStore } from '@/stores/userStore'
 import { useFinanceStore } from '@/stores/financeStore'
 import { useSavingsStore } from '@/stores/savingsStore'
 
@@ -147,12 +147,11 @@ const InitialBalanceStep: React.FC<{ onNext: () => void }> = ({ onNext }) => {
   const [loading, setLoading] = useState(false)
 
   const handleNext = async () => {
-    if (!balance || parseFloat(balance) < 0) return
+    const balanceAmount = parseFloat(balance) || 0
+    if (balanceAmount < 0) return
 
     setLoading(true)
     try {
-      const balanceAmount = parseFloat(balance)
-      
       // Créer l'utilisateur
       await createUser({
         name: 'Utilisateur',
@@ -363,7 +362,7 @@ const SavingsBoxesStep: React.FC<{ onNext: () => void; onSkip: () => void }> = (
 }
 
 const CompletionStep: React.FC<{ onNext: () => void }> = ({ onNext }) => {
-  const { completeOnboarding } = useOnboarding()
+  const { completeOnboarding } = useUserStore()
   const [loading, setLoading] = useState(false)
 
   const handleComplete = async () => {
@@ -412,7 +411,6 @@ const CompletionStep: React.FC<{ onNext: () => void }> = ({ onNext }) => {
 
 const Onboarding: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(0)
-  const { progress } = useOnboarding()
 
   const steps = [
     { component: WelcomeStep, id: 'welcome' },
@@ -470,4 +468,3 @@ const Onboarding: React.FC = () => {
 }
 
 export default Onboarding
-
